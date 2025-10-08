@@ -21,8 +21,8 @@ export function SubjectGrid() {
           <div className="flex justify-center mb-6">
             <img 
               src="/logo-large.svg" 
-              alt="Learn JEE Flow Logo" 
-              className="w-20 h-20 md:w-24 md:h-24"
+              alt="RDM Logo" 
+              className="h-16 md:h-20 w-auto"
             />
           </div>
           <h1 className="text-4xl md:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">

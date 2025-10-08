@@ -1,33 +1,43 @@
-<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="gradientLarge" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="gradientR" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#00E676;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#03A9F4;stop-opacity:1" />
     </linearGradient>
   </defs>
   
-  <!-- Square bracket outline -->
-  <g fill="none" stroke="url(#gradientLarge)" stroke-width="4" stroke-linecap="round">
+  <!-- Square bracket outline for R -->
+  <g fill="none" stroke="url(#gradientR)" stroke-width="3" stroke-linecap="round">
     <!-- Top bracket -->
-    <line x1="15" y1="15" x2="45" y2="15"/>
-    <line x1="15" y1="15" x2="15" y2="30"/>
+    <line x1="5" y1="15" x2="25" y2="15"/>
+    <line x1="5" y1="15" x2="5" y2="25"/>
     
     <!-- Right bracket -->
-    <line x1="105" y1="15" x2="75" y2="15"/>
-    <line x1="105" y1="15" x2="105" y2="30"/>
+    <line x1="45" y1="15" x2="25" y2="15"/>
+    <line x1="45" y1="15" x2="45" y2="25"/>
     
     <!-- Bottom bracket -->
-    <line x1="105" y1="105" x2="75" y2="105"/>
-    <line x1="105" y1="105" x2="105" y2="90"/>
+    <line x1="45" y1="65" x2="25" y2="65"/>
+    <line x1="45" y1="65" x2="45" y2="55"/>
     
     <!-- Left bracket -->
-    <line x1="15" y1="105" x2="45" y2="105"/>
-    <line x1="15" y1="105" x2="15" y2="90"/>
+    <line x1="5" y1="65" x2="25" y2="65"/>
+    <line x1="5" y1="65" x2="5" y2="55"/>
   </g>
   
-  <!-- Letter R -->
-  <g fill="url(#gradientLarge)">
-    <path d="M35 30 L35 90 L42 90 L42 68 L55 90 L66 90 L51 72 L62 30 L55 30 L47 55 L42 55 L42 30 Z"/>
-    <path d="M42 38 L47 38 L47 47 L42 47 Z"/>
+  <!-- Letter R with gradient -->
+  <g fill="url(#gradientR)">
+    <path d="M15 20 L15 60 L20 60 L20 45 L28 60 L34 60 L26 48 L32 20 L28 20 L24 35 L20 35 L20 20 Z"/>
+    <path d="M20 25 L24 25 L24 30 L20 30 Z"/>
+  </g>
+  
+  <!-- Letter D with solid green -->
+  <g fill="#00E676">
+    <path d="M55 20 L55 60 L75 60 Q80 60 80 55 L80 25 Q80 20 75 20 L55 20 Z M60 25 L75 25 Q77 25 77 27 L77 53 Q77 55 75 55 L60 55 Z"/>
+  </g>
+  
+  <!-- Letter M with solid green -->
+  <g fill="#00E676">
+    <path d="M90 20 L90 60 L95 60 L95 35 L105 50 L115 35 L115 60 L120 60 L120 20 L115 20 L105 38 L95 20 Z"/>
   </g>
 </svg>
