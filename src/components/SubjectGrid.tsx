@@ -20,7 +20,7 @@ export function SubjectGrid() {
         <div className="text-center mb-12">
           <div className="flex justify-center mb-6">
             <img 
-              src="/logo-large.svg" 
+              src="/logo-large.svg?v=2" 
               alt="Bee Logo" 
               className="h-20 md:h-24 w-auto"
             />
