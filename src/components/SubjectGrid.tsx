@@ -18,6 +18,13 @@ export function SubjectGrid() {
     <div className="min-h-screen bg-gradient-subtle py-12 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
+          <div className="flex justify-center mb-6">
+            <img 
+              src="/logo-large.svg" 
+              alt="Learn JEE Flow Logo" 
+              className="w-20 h-20 md:w-24 md:h-24"
+            />
+          </div>
           <h1 className="text-4xl md:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">
             JEE Learning Hub
           </h1>

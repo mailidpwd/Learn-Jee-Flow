@@ -1,0 +1,33 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradientLarge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00E676;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#03A9F4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Square bracket outline -->
+  <g fill="none" stroke="url(#gradientLarge)" stroke-width="4" stroke-linecap="round">
+    <!-- Top bracket -->
+    <line x1="15" y1="15" x2="45" y2="15"/>
+    <line x1="15" y1="15" x2="15" y2="30"/>
+    
+    <!-- Right bracket -->
+    <line x1="105" y1="15" x2="75" y2="15"/>
+    <line x1="105" y1="15" x2="105" y2="30"/>
+    
+    <!-- Bottom bracket -->
+    <line x1="105" y1="105" x2="75" y2="105"/>
+    <line x1="105" y1="105" x2="105" y2="90"/>
+    
+    <!-- Left bracket -->
+    <line x1="15" y1="105" x2="45" y2="105"/>
+    <line x1="15" y1="105" x2="15" y2="90"/>
+  </g>
+  
+  <!-- Letter R -->
+  <g fill="url(#gradientLarge)">
+    <path d="M35 30 L35 90 L42 90 L42 68 L55 90 L66 90 L51 72 L62 30 L55 30 L47 55 L42 55 L42 30 Z"/>
+    <path d="M42 38 L47 38 L47 47 L42 47 Z"/>
+  </g>
+</svg>
