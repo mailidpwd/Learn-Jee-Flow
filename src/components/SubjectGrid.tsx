@@ -21,8 +21,8 @@ export function SubjectGrid() {
           <div className="flex justify-center mb-6">
             <img 
               src="/logo-large.svg" 
-              alt="RDM Logo" 
-              className="h-16 md:h-20 w-auto"
+              alt="Bee Logo" 
+              className="h-20 md:h-24 w-auto"
             />
           </div>
           <h1 className="text-4xl md:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">

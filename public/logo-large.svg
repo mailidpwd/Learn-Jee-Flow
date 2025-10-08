@@ -1,43 +1,48 @@
-<svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="gradientR" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#00E676;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#03A9F4;stop-opacity:1" />
+    <linearGradient id="beeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFEB3B;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFC107;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF9800;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="wingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#81D4FA;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#29B6F6;stop-opacity:0.6" />
     </linearGradient>
   </defs>
   
-  <!-- Square bracket outline for R -->
-  <g fill="none" stroke="url(#gradientR)" stroke-width="3" stroke-linecap="round">
-    <!-- Top bracket -->
-    <line x1="5" y1="15" x2="25" y2="15"/>
-    <line x1="5" y1="15" x2="5" y2="25"/>
-    
-    <!-- Right bracket -->
-    <line x1="45" y1="15" x2="25" y2="15"/>
-    <line x1="45" y1="15" x2="45" y2="25"/>
-    
-    <!-- Bottom bracket -->
-    <line x1="45" y1="65" x2="25" y2="65"/>
-    <line x1="45" y1="65" x2="45" y2="55"/>
-    
-    <!-- Left bracket -->
-    <line x1="5" y1="65" x2="25" y2="65"/>
-    <line x1="5" y1="65" x2="5" y2="55"/>
-  </g>
+  <!-- Bee body (main yellow part) -->
+  <ellipse cx="60" cy="65" rx="25" ry="35" fill="url(#beeGradient)" stroke="#333" stroke-width="2"/>
   
-  <!-- Letter R with gradient -->
-  <g fill="url(#gradientR)">
-    <path d="M15 20 L15 60 L20 60 L20 45 L28 60 L34 60 L26 48 L32 20 L28 20 L24 35 L20 35 L20 20 Z"/>
-    <path d="M20 25 L24 25 L24 30 L20 30 Z"/>
-  </g>
+  <!-- Black stripes on bee body -->
+  <ellipse cx="60" cy="50" rx="20" ry="3" fill="#333"/>
+  <ellipse cx="60" cy="60" rx="20" ry="3" fill="#333"/>
+  <ellipse cx="60" cy="70" rx="20" ry="3" fill="#333"/>
+  <ellipse cx="60" cy="80" rx="20" ry="3" fill="#333"/>
   
-  <!-- Letter D with solid green -->
-  <g fill="#00E676">
-    <path d="M55 20 L55 60 L75 60 Q80 60 80 55 L80 25 Q80 20 75 20 L55 20 Z M60 25 L75 25 Q77 25 77 27 L77 53 Q77 55 75 55 L60 55 Z"/>
-  </g>
+  <!-- Bee head -->
+  <circle cx="60" cy="35" r="18" fill="url(#beeGradient)" stroke="#333" stroke-width="2"/>
   
-  <!-- Letter M with solid green -->
-  <g fill="#00E676">
-    <path d="M90 20 L90 60 L95 60 L95 35 L105 50 L115 35 L115 60 L120 60 L120 20 L115 20 L105 38 L95 20 Z"/>
-  </g>
+  <!-- Bee eyes -->
+  <ellipse cx="55" cy="32" rx="3" ry="4" fill="#333"/>
+  <ellipse cx="65" cy="32" rx="3" ry="4" fill="#333"/>
+  
+  <!-- Bee antennae -->
+  <line x1="50" y1="25" x2="45" y2="20" stroke="#333" stroke-width="3" stroke-linecap="round"/>
+  <line x1="70" y1="25" x2="75" y2="20" stroke="#333" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="45" cy="20" r="2" fill="#333"/>
+  <circle cx="75" cy="20" r="2" fill="#333"/>
+  
+  <!-- Left wing (back) -->
+  <ellipse cx="40" cy="45" rx="15" ry="25" fill="url(#wingGradient)" stroke="#29B6F6" stroke-width="1" opacity="0.7"/>
+  
+  <!-- Right wing (front) -->
+  <ellipse cx="80" cy="45" rx="15" ry="25" fill="url(#wingGradient)" stroke="#29B6F6" stroke-width="1" opacity="0.8"/>
+  
+  <!-- Wing details -->
+  <path d="M35 35 Q40 45 35 55" stroke="#29B6F6" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M85 35 Q80 45 85 55" stroke="#29B6F6" stroke-width="1" fill="none" opacity="0.5"/>
+  
+  <!-- Bee smile -->
+  <path d="M52 40 Q60 45 68 40" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
 </svg>
