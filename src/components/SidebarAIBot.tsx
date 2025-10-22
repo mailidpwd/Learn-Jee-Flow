@@ -23,7 +23,10 @@ interface SidebarAIBotProps {
   onClose: () => void;
 }
 
-const N8N_WEBHOOK_URL = "https://mailidpwd.app.n8n.cloud/webhook/e4187911-12cb-4d99-b426-bd78e8ede93e";
+// Use proxy to avoid CORS issues
+const N8N_WEBHOOK_URL = import.meta.env.PROD 
+  ? "/api/webhook-proxy" 
+  : "/api/webhook-proxy";
 
 export default function SidebarAIBot({ subject, chapter, level, isOpen, onClose }: SidebarAIBotProps) {
   const [messages, setMessages] = useState<Message[]>([]);
