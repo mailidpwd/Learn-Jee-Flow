@@ -23,10 +23,8 @@ interface SidebarAIBotProps {
   onClose: () => void;
 }
 
-// Use proxy to avoid CORS issues
-const N8N_WEBHOOK_URL = import.meta.env.PROD 
-  ? "/api/webhook-proxy" 
-  : "/api/webhook-proxy";
+// Use direct n8n webhook URL for now (CORS needs to be fixed in n8n)
+const N8N_WEBHOOK_URL = "https://testbee.app.n8n.cloud/webhook/bf4dd093-bb02-472c-9454-7ab9af97bd1d";
 
 export default function SidebarAIBot({ subject, chapter, level, isOpen, onClose }: SidebarAIBotProps) {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -445,6 +443,7 @@ Use PROFESSIONAL LaTeX formatting for all mathematical expressions:
 
     const response = await fetch(N8N_WEBHOOK_URL, {
       method: 'POST',
+      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
