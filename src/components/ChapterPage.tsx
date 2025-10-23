@@ -42,7 +42,9 @@ import ChemistryIntermediatePlayground from './ChemistryIntermediatePlayground';
 import AtomicStructureIntermediatePlayground from './AtomicStructureIntermediatePlayground';
 import ChemistryAdvancedPlayground from './ChemistryAdvancedPlayground';
 import AtomicStructureAdvancedPlayground from './AtomicStructureAdvancedPlayground';
+import ComplexNumbersPlayground from './ComplexNumbersPlayground';
 import katex from 'katex';
+import 'katex/dist/katex.min.css';
 import React from 'react';
 
 class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
@@ -137,7 +139,7 @@ export function ChapterPage() {
     
     let content = text;
     
-    // Render LaTeX via KaTeX
+    // Render LaTeX via KaTeX - Handle display math first ($$...$$)
     content = content.replace(/\$\$(.*?)\$\$/gs, (_match, formula) => {
       try {
         return katex.renderToString(String(formula).trim(), { displayMode: true, throwOnError: false });
@@ -145,7 +147,9 @@ export function ChapterPage() {
         return String(formula);
       }
     });
-    content = content.replace(/\$(.*?)\$/g, (_match, formula) => {
+    
+    // Handle inline math ($...$) - but avoid matching within display math
+    content = content.replace(/\$(?!\$)([^$]+?)\$/g, (_match, formula) => {
       try {
         return katex.renderToString(String(formula).trim(), { displayMode: false, throwOnError: false });
       } catch {
@@ -382,7 +386,15 @@ export function ChapterPage() {
                           </div>
                         )}
 
-                          {chapter === 'complex-numbers' && currentLevel === 'intermediate' && idx === subtopicContents.length - 1 && (
+                          {chapter === 'complex-numbers' && currentLevel === 'beginner' && idx === subtopicContents.length - 1 && (
+                          <div className="mt-8">
+                            <ErrorBoundary>
+                              <ComplexNumbersPlayground />
+                            </ErrorBoundary>
+                          </div>
+                        )}
+
+                        {chapter === 'complex-numbers' && currentLevel === 'intermediate' && idx === subtopicContents.length - 1 && (
                           <div className="mt-8">
                             <ErrorBoundary>
                               <ComplexNumbersIntermediatePlayground />

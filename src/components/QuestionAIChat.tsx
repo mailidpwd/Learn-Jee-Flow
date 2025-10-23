@@ -37,7 +37,7 @@ ORIGINAL QUESTION: "${context.question}"
 SUBJECT: ${context.subject}
 LEVEL: ${context.level}
 
-IMPORTANT: Keep responses SHORT and CONCISE (max 3-4 sentences). The chat interface is small, so be brief but helpful. Focus on the key points only.`;
+IMPORTANT: Provide COMPLETE and DETAILED responses. Explain concepts thoroughly with examples. Give step-by-step solutions when needed. Be comprehensive and educational.`;
 
     const fullPrompt = `${systemPrompt}\n\nStudent asks: "${prompt}"\n\nProvide a helpful, educational response:`;
 
@@ -56,7 +56,7 @@ IMPORTANT: Keep responses SHORT and CONCISE (max 3-4 sentences). The chat interf
         temperature: 0.7,
         topK: 40,
         topP: 0.95,
-        maxOutputTokens: 1000,
+        maxOutputTokens: 4000,
       }
     };
 
@@ -88,7 +88,7 @@ IMPORTANT: Keep responses SHORT and CONCISE (max 3-4 sentences). The chat interf
       if (candidate.finishReason === 'MAX_TOKENS') {
         console.log('⚠️ Response truncated due to token limit');
         // Return a helpful message instead of failing
-        return `I understand your question, but my response was cut short due to length limits. Please ask a more specific question or try one of the quick action buttons below!`;
+        return `I'm working on a detailed response for you. Let me try again with a more focused approach. Please try asking your question again or use one of the quick action buttons below for a complete explanation!`;
       }
       
       if (candidate.content && candidate.content.parts && candidate.content.parts[0]) {
@@ -256,7 +256,7 @@ export function QuestionAIChat({ question, subject, level, onClose, initialPromp
           headers: { 'Content-Type': 'application/json' },
                    body: JSON.stringify({
                      contents: [{ parts: [{ text: "Test" }] }],
-                     generationConfig: { maxOutputTokens: 100 }
+                     generationConfig: { maxOutputTokens: 4000 }
                    })
         });
         
@@ -459,34 +459,41 @@ export function QuestionAIChat({ question, subject, level, onClose, initialPromp
 
   return (
     <div className="w-full max-w-md h-[480px] relative">
-      <Card className="h-full bg-gradient-to-br from-purple-100 via-pink-50 to-blue-50 backdrop-blur-sm border-none shadow-xl overflow-hidden">
+      <Card className="h-full border-none shadow-2xl overflow-hidden" style={{
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%)',
+        backdropFilter: 'blur(20px)',
+        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)'
+      }}>
         {/* Header */}
-        <CardHeader className="pb-3 bg-white/20 backdrop-blur-md">
+        <CardHeader className="pb-4" style={{
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          boxShadow: '0 4px 20px rgba(102, 126, 234, 0.3)'
+        }}>
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
-                  <Sparkles className="h-5 w-5 text-white animate-pulse" />
+                <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-lg flex items-center justify-center shadow-lg">
+                  <div className="w-6 h-6 bg-white rounded-md flex items-center justify-center">
+                    <span className="text-blue-600 font-bold text-sm">AI</span>
+                  </div>
                 </div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-bounce">
-                  <Leaf className="h-3 w-3 text-white ml-0.5 mt-0.5" />
-                </div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
               </div>
               <div>
-                <CardTitle className="text-lg font-bold text-gray-800 flex items-center gap-2">
-                  AI Study Buddy 🌿
-                  {apiStatus === 'working' && <span className="text-green-600 text-xs font-bold">✅ LIVE</span>}
-                  {apiStatus === 'failed' && <span className="text-orange-600 text-xs font-bold">⚠️ OFFLINE</span>}
-                  {apiStatus === 'testing' && <span className="text-blue-600 text-xs">⏳</span>}
+                <CardTitle className="text-lg font-bold text-white flex items-center gap-2" style={{ fontWeight: '600', letterSpacing: '0.02em' }}>
+                  AI Study Buddy
+                  {apiStatus === 'working' && <span className="text-green-300 text-xs font-bold bg-green-500/30 px-2 py-1 rounded-full">LIVE</span>}
+                  {apiStatus === 'failed' && <span className="text-orange-300 text-xs font-bold bg-orange-500/30 px-2 py-1 rounded-full">OFFLINE</span>}
+                  {apiStatus === 'testing' && <span className="text-blue-300 text-xs bg-blue-500/30 px-2 py-1 rounded-full">LOADING</span>}
                 </CardTitle>
-                <p className="text-sm text-gray-600 font-medium">{level} • {subject}</p>
+                <p className="text-sm text-white/90 font-medium" style={{ fontSize: '13px', fontWeight: '400' }}>{level} • {subject}</p>
               </div>
             </div>
             <Button 
               variant="ghost" 
               size="sm" 
               onClick={onClose}
-              className="text-gray-600 hover:bg-white/30 rounded-full w-8 h-8 p-0"
+              className="text-white hover:bg-white/20 rounded-lg w-8 h-8 p-0 transition-all duration-200"
             >
               <X className="h-4 w-4" />
             </Button>
@@ -494,30 +501,41 @@ export function QuestionAIChat({ question, subject, level, onClose, initialPromp
         </CardHeader>
         
         {/* Chat Messages */}
-        <CardContent className="flex flex-col h-[380px] p-3 bg-white/30 backdrop-blur-sm">
+        <CardContent className="flex flex-col h-[380px] p-4" style={{
+          background: 'transparent'
+        }}>
           <ScrollArea ref={scrollAreaRef} className="flex-1 mb-3">
-            <div className="space-y-3 pr-2">
+            <div className="space-y-4 pr-2">
               {messages.map((message, index) => (
                 <div
                   key={index}
                   className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
                 >
                   <div
-                    className={`max-w-[90%] rounded-xl p-3 relative ${
+                    className={`max-w-[90%] rounded-2xl p-4 relative ${
                       message.role === 'user'
-                        ? 'bg-gradient-to-br from-blue-500 to-purple-600 text-white shadow-lg ml-8'
-                        : 'bg-white/95 backdrop-blur-sm text-gray-800 shadow-md mr-8'
+                        ? 'text-white shadow-lg ml-8'
+                        : 'text-gray-800 shadow-md mr-8'
                     }`}
+                    style={{
+                      background: message.role === 'user' 
+                        ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                        : 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+                      boxShadow: message.role === 'user'
+                        ? '0 8px 25px rgba(102, 126, 234, 0.3)'
+                        : '0 4px 15px rgba(0, 0, 0, 0.08)',
+                      border: message.role === 'assistant' ? '1px solid rgba(0, 0, 0, 0.05)' : 'none'
+                    }}
                   >
                     {/* Avatar */}
                     <div className={`absolute top-2 ${message.role === 'user' ? '-right-2' : '-left-2'}`}>
-                      <div className={`w-6 h-6 rounded-full flex items-center justify-center shadow-lg ${
+                      <div className={`w-6 h-6 rounded-lg flex items-center justify-center shadow-lg ${
                         message.role === 'user' 
-                          ? 'bg-gradient-to-br from-purple-500 to-pink-500' 
+                          ? 'bg-gradient-to-br from-blue-500 to-purple-600' 
                           : 'bg-gradient-to-br from-green-400 to-blue-500'
                       }`}>
                         {message.role === 'assistant' ? (
-                          <Sparkles className="h-3 w-3 text-white" />
+                          <div className="w-3 h-3 bg-white rounded-sm"></div>
                         ) : (
                           <User className="h-3 w-3 text-white" />
                         )}
@@ -525,7 +543,12 @@ export function QuestionAIChat({ question, subject, level, onClose, initialPromp
                     </div>
 
                     {/* Message Content */}
-                    <div className="text-xs leading-relaxed">
+                    <div className="text-sm leading-relaxed" style={{
+                      fontFamily: '"Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif',
+                      fontWeight: '400',
+                      letterSpacing: '0.01em',
+                      wordSpacing: '0.05em'
+                    }}>
                       {renderMathContent(message.content)}
                     </div>
                     
@@ -544,16 +567,16 @@ export function QuestionAIChat({ question, subject, level, onClose, initialPromp
                 <div className="flex justify-start animate-fade-in">
                   <div className="bg-white/95 backdrop-blur-sm rounded-xl p-3 max-w-[90%] shadow-md mr-8 relative">
                     <div className="absolute top-2 -left-2">
-                      <div className="w-6 h-6 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
-                        <Sparkles className="h-3 w-3 text-white animate-spin" />
+                      <div className="w-6 h-6 bg-gradient-to-br from-green-400 to-blue-500 rounded-lg flex items-center justify-center shadow-lg">
+                        <div className="w-3 h-3 bg-white rounded-sm animate-pulse"></div>
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <span className="text-xs text-gray-600">Thinking</span>
+                      <span className="text-xs text-gray-600 font-medium">Processing</span>
                       <div className="flex space-x-1">
-                        <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce"></div>
-                        <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                        <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                        <div className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></div>
+                        <div className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        <div className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
                       </div>
                     </div>
                   </div>
@@ -563,13 +586,21 @@ export function QuestionAIChat({ question, subject, level, onClose, initialPromp
           </ScrollArea>
           
           {/* Quick Action Buttons */}
-          <div className="flex space-x-2 mb-2">
+          <div className="flex space-x-2 mb-3">
             <Button
               onClick={() => handleQuickAction('Explain this concept to me')}
               disabled={isLoading}
               variant="outline"
               size="sm"
-              className="flex-1 bg-white/50 backdrop-blur-md border-white/50 text-gray-700 hover:bg-white/70 hover:border-white/70 rounded-lg py-1.5 px-3 text-xs font-medium transition-all"
+              className="flex-1 rounded-lg py-2 px-3 text-xs font-medium transition-all duration-200 hover:scale-105 disabled:opacity-50"
+              style={{
+                background: 'linear-gradient(135deg, #f8fafc 0%, #ffffff 100%)',
+                border: '1px solid #e2e8f0',
+                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+                fontWeight: '500',
+                letterSpacing: '0.01em',
+                color: '#374151'
+              }}
             >
               Explain
             </Button>
@@ -578,7 +609,15 @@ export function QuestionAIChat({ question, subject, level, onClose, initialPromp
               disabled={isLoading}
               variant="outline"
               size="sm"
-              className="flex-1 bg-white/50 backdrop-blur-md border-white/50 text-gray-700 hover:bg-white/70 hover:border-white/70 rounded-lg py-1.5 px-3 text-xs font-medium transition-all"
+              className="flex-1 rounded-lg py-2 px-3 text-xs font-medium transition-all duration-200 hover:scale-105 disabled:opacity-50"
+              style={{
+                background: 'linear-gradient(135deg, #f8fafc 0%, #ffffff 100%)',
+                border: '1px solid #e2e8f0',
+                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+                fontWeight: '500',
+                letterSpacing: '0.01em',
+                color: '#374151'
+              }}
             >
               Step by step
             </Button>
@@ -587,28 +626,51 @@ export function QuestionAIChat({ question, subject, level, onClose, initialPromp
               disabled={isLoading}
               variant="outline"
               size="sm"
-              className="flex-1 bg-white/50 backdrop-blur-md border-white/50 text-gray-700 hover:bg-white/70 hover:border-white/70 rounded-lg py-1.5 px-3 text-xs font-medium transition-all"
+              className="flex-1 rounded-lg py-2 px-3 text-xs font-medium transition-all duration-200 hover:scale-105 disabled:opacity-50"
+              style={{
+                background: 'linear-gradient(135deg, #f8fafc 0%, #ffffff 100%)',
+                border: '1px solid #e2e8f0',
+                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+                fontWeight: '500',
+                letterSpacing: '0.01em',
+                color: '#374151'
+              }}
             >
               Why?
             </Button>
           </div>
           
           {/* Input Area */}
-          <div className="flex space-x-2 items-end">
+          <div className="flex space-x-3 items-end">
             <div className="flex-1 relative">
                 <Input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask me anything... 🤔"
+                  placeholder="Ask me anything..."
                   onKeyPress={handleKeyPress}
                   disabled={isLoading}
-                className="border-none bg-white/60 backdrop-blur-md text-gray-900 placeholder:text-gray-500 rounded-xl py-2 px-3 text-sm focus:ring-2 focus:ring-blue-400 focus:bg-white/80 transition-all"
+                  className="border-0 rounded-lg py-3 px-4 text-sm focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                  style={{
+                    background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+                    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+                    border: '1px solid #e2e8f0',
+                    fontSize: '14px',
+                    fontWeight: '400',
+                    letterSpacing: '0.01em',
+                    color: '#374151'
+                  }}
                 />
             </div>
             <Button 
               onClick={sendMessage} 
               disabled={!input.trim() || isLoading}
-              className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-xl p-2 shadow-lg transition-all hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+              className="rounded-lg p-3 shadow-lg transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+              style={{
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+                minWidth: '48px',
+                minHeight: '48px'
+              }}
             >
               <Send className="h-4 w-4 text-white" />
             </Button>

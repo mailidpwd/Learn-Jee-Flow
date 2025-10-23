@@ -50,10 +50,94 @@ export default function SidebarAIBot({ subject, chapter, level, isOpen, onClose 
         'Quadratic Equations': ['Definition', 'Explanation', 'Numeric Example'],
         'Roots & Discriminant': ['Definition', 'Explanation', 'Numeric Example']
       }
+    },
+    'Matrices & Determinants': {
+      topics: ['Matrix Basics', 'Types of Matrices', 'Determinants'],
+      prompts: {
+        'Matrix Basics': ['Definition', 'Explanation', 'Numeric Example'],
+        'Types of Matrices': ['Definition', 'Explanation', 'Numeric Example'],
+        'Determinants': ['Definition', 'Explanation', 'Numeric Example']
+      }
+    },
+    'Permutations & Combinations': {
+      topics: ['Permutations', 'Combinations', 'Applications'],
+      prompts: {
+        'Permutations': ['Definition', 'Explanation', 'Numeric Example'],
+        'Combinations': ['Definition', 'Explanation', 'Numeric Example'],
+        'Applications': ['Definition', 'Explanation', 'Numeric Example']
+      }
+    },
+    'Binomial Theorem': {
+      topics: ['Binomial Expansion', 'Coefficients', 'Applications'],
+      prompts: {
+        'Binomial Expansion': ['Definition', 'Explanation', 'Numeric Example'],
+        'Coefficients': ['Definition', 'Explanation', 'Numeric Example'],
+        'Applications': ['Definition', 'Explanation', 'Numeric Example']
+      }
+    },
+    'Sequences & Series': {
+      topics: ['Arithmetic Sequences', 'Geometric Sequences', 'Series Sum'],
+      prompts: {
+        'Arithmetic Sequences': ['Definition', 'Explanation', 'Numeric Example'],
+        'Geometric Sequences': ['Definition', 'Explanation', 'Numeric Example'],
+        'Series Sum': ['Definition', 'Explanation', 'Numeric Example']
+      }
+    },
+    'Sequences and Series': {
+      topics: ['Arithmetic Sequences', 'Geometric Sequences', 'Series Sum'],
+      prompts: {
+        'Arithmetic Sequences': ['Definition', 'Explanation', 'Numeric Example'],
+        'Geometric Sequences': ['Definition', 'Explanation', 'Numeric Example'],
+        'Series Sum': ['Definition', 'Explanation', 'Numeric Example']
+      }
+    },
+    'Calculus Basics': {
+      topics: ['Limits', 'Derivatives', 'Applications'],
+      prompts: {
+        'Limits': ['Definition', 'Explanation', 'Numeric Example'],
+        'Derivatives': ['Definition', 'Explanation', 'Numeric Example'],
+        'Applications': ['Definition', 'Explanation', 'Numeric Example']
+      }
+    },
+    'Integration Basics': {
+      topics: ['Indefinite Integration', 'Definite Integration', 'Applications'],
+      prompts: {
+        'Indefinite Integration': ['Definition', 'Explanation', 'Numeric Example'],
+        'Definite Integration': ['Definition', 'Explanation', 'Numeric Example'],
+        'Applications': ['Definition', 'Explanation', 'Numeric Example']
+      }
+    },
+    'Coordinate Geometry Basics': {
+      topics: ['Distance Formula', 'Midpoint Formula', 'Slope'],
+      prompts: {
+        'Distance Formula': ['Definition', 'Explanation', 'Numeric Example'],
+        'Midpoint Formula': ['Definition', 'Explanation', 'Numeric Example'],
+        'Slope': ['Definition', 'Explanation', 'Numeric Example']
+      }
+    },
+    'Trigonometry': {
+      topics: ['Trigonometric Ratios', 'Identities', 'Applications'],
+      prompts: {
+        'Trigonometric Ratios': ['Definition', 'Explanation', 'Numeric Example'],
+        'Identities': ['Definition', 'Explanation', 'Numeric Example'],
+        'Applications': ['Definition', 'Explanation', 'Numeric Example']
+      }
+    },
+    'Statistics & Probability': {
+      topics: ['Mean, Median, Mode', 'Probability Basics', 'Distributions'],
+      prompts: {
+        'Mean, Median, Mode': ['Definition', 'Explanation', 'Numeric Example'],
+        'Probability Basics': ['Definition', 'Explanation', 'Numeric Example'],
+        'Distributions': ['Definition', 'Explanation', 'Numeric Example']
+      }
     }
   };
 
   const chapterData = currentChapterTopics[chapter] || currentChapterTopics['Sets & Relations'];
+  
+  // Debug: Log the chapter name and available topics
+  console.log('🔍 Current chapter:', chapter);
+  console.log('🔍 Available topics:', chapterData.topics);
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -85,31 +169,188 @@ export default function SidebarAIBot({ subject, chapter, level, isOpen, onClose 
     setMessages([greeting]);
   }, [chapter, level]);
 
-  // Professional Math Rendering with MathJax
+  // PROFESSIONAL MATHEMATICAL RENDERING - ENHANCED FOR MATH EDUCATION
   const renderMessageContent = (content: string) => {
-    // Process markdown and LaTeX formatting
     let processedContent = content
-      // Convert markdown headers to HTML
-      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-      .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-      .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-      // Convert bold text
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      // Convert markdown headers to professional HTML with better spacing
+      .replace(/^### (.*$)/gim, '<h3 style="font-weight: 600; margin: 12px 0 8px 0; color: #1f2937; font-size: 16px; line-height: 1.4;">$1</h3>')
+      .replace(/^## (.*$)/gim, '<h2 style="font-weight: 600; margin: 16px 0 10px 0; color: #1f2937; font-size: 18px; line-height: 1.4;">$1</h2>')
+      .replace(/^# (.*$)/gim, '<h1 style="font-weight: 600; margin: 20px 0 12px 0; color: #1f2937; font-size: 20px; line-height: 1.4;">$1</h1>')
+      // Convert bold text with better styling
+      .replace(/\*\*(.*?)\*\*/g, '<strong style="font-weight: 600; color: #111827;">$1</strong>')
       // Convert italic text
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      // Convert line breaks
+      .replace(/\*(.*?)\*/g, '<em style="font-style: italic; color: #374151;">$1</em>')
+      // Convert line breaks with proper spacing
       .replace(/\n/g, '<br>')
-      // Convert bullet points
-      .replace(/^- (.*$)/gim, '<li>$1</li>')
-      // Wrap consecutive list items
-      .replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>')
-      // Clean up nested ul tags
-      .replace(/<\/ul>\s*<ul>/g, '');
+      // Convert bullet points to professional list items
+      .replace(/^- (.*$)/gim, '<li style="margin: 6px 0; padding-left: 4px; line-height: 1.5;">$1</li>');
+    
+    // Wrap list items in professional <ul> styling
+    if (processedContent.includes('<li>') && !processedContent.includes('<ul>')) {
+      processedContent = `<ul style="margin: 8px 0; padding-left: 20px; list-style-type: disc;">${processedContent}</ul>`;
+    }
     
     return processedContent;
   };
 
-  // MathJax rendering effect
+  // COMPREHENSIVE CSS RESET - REMOVE ALL POSSIBLE VERTICAL LINES IN MATH CONTENT
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      /* Remove table borders that cause vertical lines in matrices/determinants */
+      .message-content table,
+      .message-content th,
+      .message-content td {
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+      }
+      
+      /* Remove SVG vertical lines and bars inside KaTeX/MathJax blocks */
+      .message-content svg,
+      .message-content svg line,
+      .message-content svg rect,
+      .message-content svg path {
+        stroke: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        fill: none !important;
+      }
+      
+      /* CRITICAL: Remove KaTeX SVG paths that draw matrix brackets/determinant bars */
+      .message-content .katex-svg path {
+        display: none !important;
+        stroke: none !important;
+        fill: none !important;
+      }
+      
+      /* Remove ALL SVG paths in math content (comprehensive approach) */
+      .message-content svg path,
+      .message-content svg line,
+      .message-content svg rect {
+        display: none !important;
+        stroke: none !important;
+        fill: none !important;
+      }
+      
+      /* MathML/KaTeX vertical bars or decorations */
+      .message-content .mopen, 
+      .message-content .mclose, 
+      .message-content .mjx-vl, 
+      .message-content .mjx-bar, 
+      .message-content mo[stretchy="true"] {
+        color: transparent !important;
+        display: none !important;
+        border: none !important;
+        background: none !important;
+      }
+      
+      /* Remove horizontal rules that might cause lines */
+      .message-content hr {
+        border: none !important;
+        height: 1px !important;
+        background: #eee !important;
+      }
+      
+      /* Keep list formatting clean but readable */
+      .message-content ul, 
+      .message-content ol {
+        margin-left: 1.2em !important;
+        padding-left: 0 !important;
+      }
+      
+      .message-content li {
+        margin: 4px 0 !important;
+        padding: 0 !important;
+      }
+      
+      /* Professional math rendering spacing and styling */
+      .message-content .katex,
+      .message-content .math-rendered,
+      .message-content .MathJax {
+        margin: 12px 0 !important;
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+      }
+      
+      /* Enhanced mathematical expressions */
+      .message-content .katex-display {
+        margin: 16px 0 !important;
+        text-align: center !important;
+        font-size: 18px !important;
+      }
+      
+      /* Professional inline math styling */
+      .message-content .katex-inline {
+        font-size: 16px !important;
+        margin: 0 2px !important;
+      }
+      
+      /* Better spacing for mathematical content */
+      .message-content p {
+        margin: 8px 0 !important;
+        line-height: 1.6 !important;
+      }
+      
+      /* Professional list styling */
+      .message-content ul {
+        margin: 12px 0 !important;
+        padding-left: 24px !important;
+        list-style-type: disc !important;
+      }
+      
+      .message-content li {
+        margin: 6px 0 !important;
+        line-height: 1.5 !important;
+      }
+      
+      /* Enhanced mathematical typography for better readability */
+      .message-content {
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "kern" 1, "liga" 1;
+      }
+      
+      /* Professional mathematical expressions styling */
+      .message-content sup,
+      .message-content sub {
+        font-size: 0.75em;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+      }
+      
+      .message-content sup {
+        top: -0.5em;
+      }
+      
+      .message-content sub {
+        bottom: -0.25em;
+      }
+      
+      /* Additional KaTeX/MathJax specific line removals */
+      .message-content .katex .mord,
+      .message-content .katex .mbin,
+      .message-content .katex .mrel,
+      .message-content .katex .mopen,
+      .message-content .katex .mclose {
+        border: none !important;
+        background: none !important;
+      }
+      
+      /* Remove any remaining vertical lines from math containers */
+      .message-content .MathJax,
+      .message-content .MathJax_Display,
+      .message-content .mjx-container {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }
+    `;
+    document.head.appendChild(style);
+    return () => { document.head.removeChild(style); };
+  }, []);
+
+  // MathJax rendering effect for LaTeX
   useEffect(() => {
     const timer = setTimeout(() => {
       if ((window as any).MathJax && (window as any).MathJax.typesetPromise) {
@@ -228,19 +469,33 @@ export default function SidebarAIBot({ subject, chapter, level, isOpen, onClose 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed right-0 top-16 w-[450px] h-[calc(100vh-4rem)] bg-white border-l border-gray-200 shadow-xl z-50 flex flex-col chatbot-container">
+    <div className="fixed right-0 top-16 w-[450px] h-[calc(100vh-4rem)] bg-white border-l border-gray-200 shadow-2xl z-50 flex flex-col chatbot-container" style={{
+      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)',
+      backdropFilter: 'blur(10px)',
+      background: 'rgba(255, 255, 255, 0.95)'
+    }}>
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 flex items-center justify-between">
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-5 flex items-center justify-between" style={{
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        boxShadow: '0 4px 20px rgba(102, 126, 234, 0.3)'
+      }}>
         <div>
-          <h3 className="font-semibold text-lg">🧮 AI Study Assistant</h3>
-          <p className="text-sm opacity-90">{subject} • {chapter} • {level}</p>
+          <h3 className="font-semibold text-xl mb-1" style={{ fontWeight: '600', letterSpacing: '0.02em' }}>🧮 AI Study Buddy</h3>
+          <p className="text-sm opacity-90" style={{ fontSize: '13px', fontWeight: '400' }}>{subject} • {chapter} • {level}</p>
         </div>
-        <button
-          onClick={onClose}
-          className="text-white hover:text-gray-200 transition-colors"
-        >
-          <X size={20} />
-        </button>
+        <div className="flex items-center space-x-3">
+          <span className="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium" style={{ 
+            background: 'linear-gradient(135deg, #10b981, #059669)',
+            boxShadow: '0 2px 8px rgba(16, 185, 129, 0.3)'
+          }}>LIVE</span>
+          <button
+            onClick={onClose}
+            className="text-white hover:bg-white hover:bg-opacity-20 rounded-full p-2 transition-all duration-200"
+            style={{ borderRadius: '50%' }}
+          >
+            <X size={20} />
+          </button>
+        </div>
       </div>
 
 
@@ -255,35 +510,32 @@ export default function SidebarAIBot({ subject, chapter, level, isOpen, onClose 
                 style={{ marginTop: index === 0 ? '20px' : '0px' }}
               >
                 <div
-                  className={`px-4 py-3 rounded-lg ${
+                  className={`px-5 py-4 rounded-2xl ${
                     message.role === 'user'
-                      ? 'bg-blue-500 text-white'
-                      : 'bg-gray-100 text-gray-800'
+                      ? 'text-white'
+                      : 'text-gray-800'
                   }`}
                   style={{
-                    maxWidth: '100%',
-                    width: '100%',
-                    overflow: 'hidden',
-                    wordWrap: 'break-word',
-                    overflowWrap: 'break-word',
-                    wordBreak: 'break-word',
-                    whiteSpace: 'normal',
-                    minHeight: 'auto',
-                    boxSizing: 'border-box'
+                    background: message.role === 'user' 
+                      ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                      : 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
+                    boxShadow: message.role === 'user'
+                      ? '0 8px 25px rgba(102, 126, 234, 0.3)'
+                      : '0 4px 15px rgba(0, 0, 0, 0.08)',
+                    border: message.role === 'assistant' ? '1px solid rgba(0, 0, 0, 0.05)' : 'none'
                   }}
                 >
                   <div
-                    className="message-content response-content"
+                    className="message-content"
                     dangerouslySetInnerHTML={{ __html: renderMessageContent(message.content) }}
-                    style={{
+                    style={{ 
+                      fontFamily: '"Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif',
                       lineHeight: '1.6',
-                      padding: '16px 0',
                       fontSize: '15px',
-                      fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-                      textAlign: 'left',
-                      color: '#333',
-                      wordWrap: 'break-word',
-                      overflowWrap: 'break-word'
+                      color: 'inherit',
+                      fontWeight: '400',
+                      letterSpacing: '0.01em',
+                      wordSpacing: '0.05em'
                     }}
                   />
                 </div>
@@ -317,8 +569,15 @@ export default function SidebarAIBot({ subject, chapter, level, isOpen, onClose 
       </div>
 
       {/* Quick Topics - Above Input */}
-      <div className="p-4 border-t border-gray-200 bg-gray-50">
-        <p className="text-sm font-medium text-gray-700 mb-3">Quick Topics:</p>
+      <div className="p-5 border-t border-gray-200" style={{
+        background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
+        borderTop: '1px solid rgba(0, 0, 0, 0.05)'
+      }}>
+        <p className="text-sm font-semibold text-gray-800 mb-4" style={{ 
+          fontSize: '14px', 
+          fontWeight: '600',
+          letterSpacing: '0.02em'
+        }}>Quick Topics:</p>
         
         {/* Main Topic Boxes - Horizontal Layout */}
         <div className="flex gap-2 mb-3">
@@ -326,11 +585,22 @@ export default function SidebarAIBot({ subject, chapter, level, isOpen, onClose 
             <button
               key={topic}
               onClick={() => handleMainTopicClick(topic)}
-              className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+              className={`flex-1 px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${
                 expandedTopic === topic 
-                  ? 'bg-blue-600 text-white shadow-md' 
-                  : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+                  ? 'text-white shadow-lg'
+                  : 'text-gray-700 hover:shadow-md border'
               }`}
+              style={{
+                background: expandedTopic === topic 
+                  ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                  : 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+                borderColor: expandedTopic === topic ? 'transparent' : 'rgba(0, 0, 0, 0.1)',
+                boxShadow: expandedTopic === topic 
+                  ? '0 4px 15px rgba(102, 126, 234, 0.3)'
+                  : '0 2px 8px rgba(0, 0, 0, 0.05)',
+                fontWeight: '500',
+                letterSpacing: '0.01em'
+              }}
             >
               {topic}
             </button>
@@ -356,20 +626,34 @@ export default function SidebarAIBot({ subject, chapter, level, isOpen, onClose 
         )}
 
         {/* Input Field */}
-        <div className="flex space-x-2">
+        <div className="flex space-x-3">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder={`Ask about ${chapter}...`}
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="flex-1 px-4 py-3 border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            style={{
+              background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+              border: '1px solid rgba(0, 0, 0, 0.05)',
+              fontSize: '15px',
+              fontWeight: '400',
+              letterSpacing: '0.01em'
+            }}
             disabled={isLoading}
           />
           <button
             onClick={handleSendMessage}
             disabled={!input.trim() || isLoading}
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center"
+            className="px-5 py-3 text-white rounded-2xl hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center"
+            style={{
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              boxShadow: '0 4px 15px rgba(102, 126, 234, 0.3)',
+              minWidth: '48px',
+              minHeight: '48px'
+            }}
           >
             <Send size={16} />
           </button>

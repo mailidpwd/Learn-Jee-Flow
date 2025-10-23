@@ -886,9 +886,6 @@ export const subtopics: Subtopic[] = [
 
   // Complex Numbers & Quadratic Equations (existing)
   { id: 'quadratic-roots', chapterId: 'complex-numbers', index: 1, title: 'Roots of a Quadratic Equation' },
-  { id: 'discriminant', chapterId: 'complex-numbers', index: 2, title: 'Complex Numbers Advanced' },
-  { id: 'vertex-form', chapterId: 'complex-numbers', index: 3, title: 'Graph & Vertex Form' },
-  { id: 'complex-intro', chapterId: 'complex-numbers', index: 4, title: 'Complex Numbers Advanced' },
 
   // Matrices & Determinants
   { id: 'matrices-basics', chapterId: 'matrices-determinants', index: 1, title: 'Basics and Types of Matrices' },
@@ -974,185 +971,253 @@ export const subtopics: Subtopic[] = [
 ];
 
 export const content: Content[] = [
-  // Beginner Level - Discriminant (existing)
   {
-    subtopicId: 'discriminant',
+    subtopicId: 'quadratic-roots',
     level: 'beginner',
-    theory: ``,
+    theory: `# Complex Numbers – Complete Beginner Theory
+
+***
+
+### 1️⃣ What Are Complex Numbers?
+
+- In mathematics, a **complex number** is a number that includes a real part and an imaginary part.
+- It is written as:
+  $$
+  z = x + iy
+  $$
+  - **x** is the **real part** (any regular number).
+  - **y** is the **imaginary part** (multiplied by **i**).
+  - **i** is the **imaginary unit**, and by definition,
+    $$
+    i^2 = -1
+    $$
+- **Why use complex numbers?**  
+  Some equations (like $$ x^2 + 1 = 0 $$) have no real solutions. Complex numbers fill this gap by letting us solve more equations.
+
+***
+
+### 2️⃣ Real Numbers, Imaginary Numbers & Complex Numbers
+
+- **Real Numbers:** Examples: 3, -2, 0, 1.5
+- **Imaginary Numbers:** Formed when a real number is multiplied by $$ i $$:
+    - Examples: $$ 2i, -7i, \\frac{1}{2}i $$
+- **Complex Numbers:**  
+    - Combine real and imaginary parts: $$ 4 + 6i, -3 - 2i, 7 $$ (note: $$ 7 $$ is a complex number with imaginary part 0).
+
+***
+
+### 3️⃣ Standard Form, Conjugate, and Equality
+
+- **Standard Form:**  
+  Always write as $$ x + iy $$.  
+  - Example: $$ 3 - 5i $$ (real part = 3, imaginary part = -5).
+- **Conjugate:**  
+  Flip the sign of imaginary part:
+  - Conjugate of $$ 3 - 5i $$ is $$ 3 + 5i $$.
+  - Useful for simplifying division with complex numbers.
+- **Equality:**  
+  Two complex numbers are equal **only if** their real parts are equal **and** their imaginary parts are equal.
+  - Example: $$ 2 + 4i = 2 + 4i $$ (Yes)
+  - $$ 3 + 2i = 2 + 3i $$ (No)
+
+***
+
+### 4️⃣ Why Do We Need Complex Numbers?
+
+- Sometimes, no real solution exists to an equation, for instance $$ x^2 + 4 = 0 $$.
+- Try solving:
+  $$
+  x^2 = -4
+  $$
+  Real numbers can't solve this, but with $$ i $$ we get:
+  $$
+  x = 2i \\quad \\text{or}\\quad -2i
+  $$
+
+***
+
+### 5️⃣ Basic Operations (How to Calculate with Complex Numbers)
+
+- **Addition:**  
+  Add real parts, add imaginary parts:
+  - $$ (2 + 3i) + (4 + 5i) = (2+4) + i(3+5) = 6 + 8i $$
+- **Subtraction:**  
+  Subtract real, subtract imaginary:
+  - $$ (5 + 2i) - (3 + 6i) = (5-3) + i(2-6) = 2 - 4i $$
+- **Multiplication:**  
+  Apply distributive law, remember $$ i^2 = -1 $$:
+  - $$ (2 + i)(1 + 3i) = 2*1 + 2*3i + i*1 + i*3i = 2 + 6i + i + 3i^2 $$
+  - Since $$ i^2 = -1 $$: $$ 3i^2 = 3(-1) = -3 $$
+  - So, $$ 2 + 6i + i - 3 = (2-3) + (6i + i) = -1 + 7i $$
+- **Division:**  
+  To divide by a complex number, multiply top and bottom by the conjugate of the denominator:
+  - $$ \\frac{3 + 2i}{1 - 2i} $$  
+    Multiply by $$ 1 + 2i $$ (conjugate) on top and bottom for a real denominator.
+
+***
+
+### 6️⃣ Quadratic Equations & Complex Roots
+
+- General quadratic:  
+  $$
+  ax^2 + bx + c = 0
+  $$
+- Discriminant
+  $$
+  D = b^2 - 4ac
+  $$
+    - If $$ D > 0 $$: Two real roots
+    - If $$ D = 0 $$: One (repeated) real root
+    - If $$ D < 0 $$: Roots are **complex numbers**
+
+- **Quadratic Formula:**
+  $$
+  x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}
+  $$
+    - If square root is negative, answer includes $$ i $$, so you get complex roots.
+
+***`,
     examples: [
       {
-        prompt: 'Find the nature of roots for the equation $2x^2 + 3x + 5 = 0$',
-        solution: `
-**Step 1:** Identify values
-- $a = 2$, $b = 3$, $c = 5$
+        prompt: 'Add the complex numbers (3 + 2i) and (1 + 4i)',
+        solution: `**Step 1:** Identify the real and imaginary parts
+- First number: 3 + 2i (real part = 3, imaginary part = 2)
+- Second number: 1 + 4i (real part = 1, imaginary part = 4)
 
-**Step 2:** Calculate discriminant  
-$D = b^2 - 4ac = 3^2 - 4(2)(5) = 9 - 40 = -31$
+**Step 2:** Add real parts and imaginary parts separately
+- Real parts: 3 + 1 = 4
+- Imaginary parts: 2 + 4 = 6
 
-**Step 3:** Determine nature
-Since $D = -31 < 0$, the equation has **no real roots**.
+**Step 3:** Combine the results
+(3 + 2i) + (1 + 4i) = (3 + 1) + (2 + 4)i = 4 + 6i
 
-*The roots are complex/imaginary numbers.*
-        `
+**Answer:** 4 + 6i`
       },
       {
-        prompt: 'Find the nature of roots for $x^2 - 6x + 9 = 0$',
-        solution: `
-**Step 1:** Identify values
-- $a = 1$, $b = -6$, $c = 9$
+        prompt: 'Solve the quadratic equation x² + 2x + 5 = 0',
+        solution: `**Step 1:** Identify coefficients
+- a = 1, b = 2, c = 5
 
 **Step 2:** Calculate discriminant
-$D = (-6)^2 - 4(1)(9) = 36 - 36 = 0$
+D = b² - 4ac = 2² - 4(1)(5) = 4 - 20 = -16
 
-**Step 3:** Determine nature  
-Since $D = 0$, the equation has **two equal real roots**.
+**Step 3:** Since D < 0, we have complex roots
+x = (-b ± √D) / 2a = (-2 ± √(-16)) / 2(1)
 
-*In fact, both roots are $x = 3$.*
-        `
+**Step 4:** Simplify √(-16)
+√(-16) = √(16 × (-1)) = √16 × √(-1) = 4i
+
+**Step 5:** Calculate the roots
+x = (-2 ± 4i) / 2 = -1 ± 2i
+
+**Answer:** x = -1 + 2i and x = -1 - 2i`
+      },
+      {
+        prompt: 'Find the conjugate of 5 - 3i',
+        solution: `**Step 1:** Identify the complex number
+- Given: 5 - 3i
+- Real part: 5
+- Imaginary part: -3
+
+**Step 2:** Apply conjugate rule
+To find the conjugate, change the sign of the imaginary part:
+- Original: 5 - 3i
+- Conjugate: 5 + 3i
+
+**Answer:** The conjugate of 5 - 3i is 5 + 3i`
       }
     ],
     mcqs: [
       {
-        question: "For the equation $x^2 + 2x + 1 = 0$, what is the discriminant?",
-        options: ["0", "4", "-4", "2"],
-        correctIndex: 0,
-        explanation: "Using D = b² - 4ac: D = (2)² - 4(1)(1) = 4 - 4 = 0",
-        hint: "Remember the formula D = b² - 4ac. Identify a=1, b=2, c=1 first.",
-        aiHelp: "Look at the equation carefully. When you substitute the coefficients into the discriminant formula, two terms will cancel out perfectly.",
+        question: 'What is the imaginary unit i defined as?',
+        options: ['i = √2', 'i² = -1', 'i = 0', 'i² = 1'],
+        correctIndex: 1,
+        explanation: 'The imaginary unit i is defined by the property i² = -1. This is the fundamental definition that allows us to work with complex numbers.',
+        hint: 'Remember the key property of the imaginary unit.',
+        aiHelp: 'The imaginary unit i is defined such that i² = -1, which allows us to take square roots of negative numbers.',
         points: 10
       },
       {
-        question: "If the discriminant is 0, how many real roots does the equation have?",
-        options: ["No real roots", "One real root", "Two equal real roots", "Three real roots"],
+        question: 'If z = 3 + 4i, what is the conjugate of z?',
+        options: ['3 - 4i', '3 + 4i', '-3 + 4i', '-3 - 4i'],
+        correctIndex: 0,
+        explanation: 'The conjugate of a complex number z = a + bi is obtained by changing the sign of the imaginary part: z̄ = a - bi. So the conjugate of 3 + 4i is 3 - 4i.',
+        hint: 'Change the sign of the imaginary part to find the conjugate.',
+        aiHelp: 'To find the conjugate, keep the real part the same and change the sign of the imaginary part.',
+        points: 10
+      },
+      {
+        question: 'What is (2 + 3i) + (1 - 2i)?',
+        options: ['3 + i', '3 + 5i', '1 + i', '3 - i'],
+        correctIndex: 0,
+        explanation: 'Add the real parts: 2 + 1 = 3. Add the imaginary parts: 3i + (-2i) = i. Therefore, (2 + 3i) + (1 - 2i) = 3 + i.',
+        hint: 'Add real parts and imaginary parts separately.',
+        aiHelp: 'For addition of complex numbers, add the real parts together and the imaginary parts together.',
+        points: 10
+      },
+      {
+        question: 'For the quadratic equation x² + 2x + 3 = 0, what type of roots does it have?',
+        options: ['Two real roots', 'One real root', 'Two complex roots', 'No roots'],
         correctIndex: 2,
-        explanation: "When D = 0, we get two equal real roots (the same root repeated twice).",
-        hint: "Think about what happens in the quadratic formula when the square root part equals zero.",
-        aiHelp: "When the discriminant is zero, the ± part of the quadratic formula becomes ± 0, giving you the same value twice.",
+        explanation: 'Calculate the discriminant: D = b² - 4ac = 2² - 4(1)(3) = 4 - 12 = -8. Since D < 0, the equation has two complex roots.',
+        hint: 'Calculate the discriminant D = b² - 4ac to determine the nature of roots.',
+        aiHelp: 'When the discriminant is negative, the quadratic equation has two complex conjugate roots.',
+        points: 10
+      },
+      {
+        question: 'What is i³ equal to?',
+        options: ['i', '-i', '1', '-1'],
+        correctIndex: 1,
+        explanation: 'Since i² = -1, we have i³ = i² × i = (-1) × i = -i.',
+        hint: 'Use the fact that i² = -1 to find i³.',
+        aiHelp: 'Remember that i² = -1, so i³ = i² × i = (-1) × i = -i.',
+        points: 10
+      },
+      {
+        question: 'In the complex plane, the point (2, -3) represents which complex number?',
+        options: ['2 - 3i', '2 + 3i', '-2 + 3i', '-2 - 3i'],
+        correctIndex: 0,
+        explanation: 'In the complex plane, the point (a, b) represents the complex number a + bi. So the point (2, -3) represents 2 - 3i.',
+        hint: 'The x-coordinate is the real part and the y-coordinate is the imaginary part.',
+        aiHelp: 'In the Argand diagram, the point (a, b) corresponds to the complex number a + bi.',
+        points: 10
+      },
+      {
+        question: 'What is the discriminant of the equation x² - 6x + 10 = 0?',
+        options: ['-4', '4', '-16', '16'],
+        correctIndex: 0,
+        explanation: 'The discriminant D = b² - 4ac = (-6)² - 4(1)(10) = 36 - 40 = -4.',
+        hint: 'Use the formula D = b² - 4ac with a = 1, b = -6, c = 10.',
+        aiHelp: 'Calculate D = b² - 4ac = (-6)² - 4(1)(10) = 36 - 40 = -4.',
+        points: 10
+      },
+      {
+        question: 'If z₁ = 1 + 2i and z₂ = 3 - i, what is z₁ × z₂?',
+        options: ['5 + 5i', '1 + 7i', '5 - 5i', '1 - 7i'],
+        correctIndex: 0,
+        explanation: 'Using the multiplication formula: (a + bi)(c + di) = (ac - bd) + (ad + bc)i. Here, (1 + 2i)(3 - i) = (1×3 - 2×(-1)) + (1×(-1) + 2×3)i = (3 + 2) + (-1 + 6)i = 5 + 5i.',
+        hint: 'Use the formula (a + bi)(c + di) = (ac - bd) + (ad + bc)i.',
+        aiHelp: 'Multiply using the distributive property and remember that i² = -1.',
+        points: 10
+      },
+      {
+        question: 'What is i⁴ equal to?',
+        options: ['i', '-i', '1', '-1'],
+        correctIndex: 2,
+        explanation: 'Since i² = -1, we have i⁴ = (i²)² = (-1)² = 1.',
+        hint: 'Use the fact that i² = -1 to find i⁴.',
+        aiHelp: 'Since i² = -1, we have i⁴ = (i²)² = (-1)² = 1.',
+        points: 10
+      },
+      {
+        question: 'For which value of k does the equation x² + kx + 4 = 0 have equal roots?',
+        options: ['k = 4', 'k = -4', 'k = ±4', 'k = 0'],
+        correctIndex: 2,
+        explanation: 'For equal roots, the discriminant must be zero: D = k² - 4(1)(4) = k² - 16 = 0. This gives k² = 16, so k = ±4.',
+        hint: 'Set the discriminant equal to zero for equal roots.',
+        aiHelp: 'For equal roots, the discriminant D = b² - 4ac must be zero.',
         points: 10
       }
-    ]
-  },
-  {
-    subtopicId: 'quadratic-roots',
-    level: 'beginner',
-    theory: ``,
-    examples: [],
-    mcqs: [
-      {
-        question: 'Quadrant Check\n\nThe point (−3, 5) lies in:',
-        options: ['Quadrant I', 'Quadrant II', 'Quadrant III', 'Quadrant IV'],
-        correctIndex: 1,
-        explanation: 'x is negative and y is positive ⇒ Quadrant II.',
-        hint: 'Check the signs of x and y.',
-        aiHelp: 'Remember: (+,+) QI, (−,+) QII, (−,−) QIII, (+,−) QIV.',
-        points: 10
-      },
-      {
-        question: 'Distance Formula\n\nDistance between A(1, 2) and B(4, 6) is:',
-        options: ['5', '√25', '10', '√20'],
-        correctIndex: 0,
-        explanation: 'd = √((4−1)^2 + (6−2)^2) = √(9+16) = √25 = 5.',
-        hint: 'Use the Pythagoras-based distance formula.',
-        aiHelp: 'Compute the differences in x and y, square, add, then take square root.',
-        points: 10
-      },
-      {
-        question: 'Midpoint Formula\n\nThe midpoint of line joining (2, 3) and (6, 7) is:',
-        options: ['(4, 5)', '(8, 10)', '(2, 5)', '(5, 5)'],
-        correctIndex: 0,
-        explanation: 'M = ((2+6)/2, (3+7)/2) = (4,5).',
-        hint: 'Average the x values and the y values.',
-        aiHelp: 'Midpoint is the mean of corresponding coordinates.',
-        points: 10
-      },
-      {
-        question: 'Section Formula\n\nPoint P divides A(2, −2) and B(8, 4) in the ratio 1:2. Coordinates of P are:',
-        options: ['(6, 2)', '(4, 0)', '(8, −2)', '(5, 1)'],
-        correctIndex: 1,
-        explanation: 'P = ((1·8 + 2·2)/3, (1·4 + 2·(−2))/3) = (12/3, 0) = (4,0).',
-        hint: 'Use (mx2+nx1)/(m+n) and (my2+ny1)/(m+n).',
-        aiHelp: 'Treat the ratio as weights on B and A respectively.',
-        points: 10
-      },
-      {
-        question: 'Slope of a Line\n\nSlope of line joining (3, 2) and (7, 10) is:',
-        options: ['2', '1', '3/2', '5/2'],
-        correctIndex: 0,
-        explanation: 'm = (10−2)/(7−3) = 8/4 = 2.',
-        hint: 'Slope is Δy/Δx.',
-        aiHelp: 'Subtract y-coordinates, subtract x-coordinates, then divide.',
-        points: 10
-      },
-      {
-        question: 'Equation of Line (Slope-Intercept Form)\n\nEquation of line with slope 2 passing through origin is:',
-        options: ['y = 2x', 'y = −2x', 'y = x + 2', 'x = 2y'],
-        correctIndex: 0,
-        explanation: 'Through origin with slope m ⇒ y = mx ⇒ y = 2x.',
-        hint: 'Slope-intercept form is y = mx + c.',
-        aiHelp: 'If it passes through origin, c = 0.',
-        points: 10
-      },
-      {
-        question: 'Collinearity Test\n\nAre the points (1, 1), (2, 2), (3, 3) collinear?',
-        options: ['Yes', 'No', 'Only (1,1) and (2,2) are collinear', "Can’t say"],
-        correctIndex: 0,
-        explanation: 'Slope(AB) = Slope(BC) = 1 ⇒ points lie on the same straight line.',
-        hint: 'Compare slopes of consecutive pairs.',
-        aiHelp: 'If slopes are equal, points are collinear.',
-        points: 10
-      },
-      {
-        question: 'Circle Equation\n\nWhich is the equation of a circle with center (0, 0) and radius 5?',
-        options: ['x² + y² = 25', 'x² + y² = 5', '(x − 5)² + (y − 5)² = 25', 'x² + y² − 25 = 0'],
-        correctIndex: 0,
-        explanation: 'Standard form is x² + y² = r² ⇒ 25. Note: x² + y² − 25 = 0 is equivalent.',
-        hint: 'For center at origin, use x² + y² = r².',
-        aiHelp: 'Square the radius and place it on the right-hand side.',
-        points: 10
-      },
-      {
-        question: 'Angle Between Lines\n\nIf slopes are m₁ = 1 and m₂ = −1, the angle between them is:',
-        options: ['30°', '45°', '60°', '90°'],
-        correctIndex: 3,
-        explanation: 'tanθ = |(1 − (−1))/(1 + (1)(−1))| = |2/0| ⇒ θ = 90°.',
-        hint: 'Use tanθ = |(m1−m2)/(1+m1 m2)|.',
-        aiHelp: 'A zero denominator implies a right angle.',
-        points: 10
-      },
-      {
-        question: 'Identify the Conic\n\nThe equation x² + y² = 16 represents:',
-        options: ['Circle', 'Ellipse', 'Parabola', 'Hyperbola'],
-        correctIndex: 0,
-        explanation: 'This is a circle centered at origin with radius 4.',
-        hint: 'Compare with x² + y² = r².',
-        aiHelp: 'If both x² and y² have same positive coefficients, it\'s a circle.',
-        points: 10
-      }
-    ]
-  },
-  {
-    subtopicId: 'vertex-form',
-    level: 'beginner',
-    theory: ``,
-    examples: [],
-    mcqs: []
-  },
-  {
-    subtopicId: 'complex-intro',
-    level: 'beginner',
-    theory: ``,
-    examples: [],
-    mcqs: [
-      { question: 'What is the value of $i^2$?', options: ['1','-1','i','0'], correctIndex: 1, explanation: 'By definition of the imaginary unit, $i^2=-1$.', hint: 'Square of $\\sqrt{-1}$.', aiHelp: 'Recall: $i=\\sqrt{-1}$. Squaring removes the root.', points: 10 },
-      { question: 'If $z = 3 + 4i$, find $|z|$.', options: ['3','4','5','7'], correctIndex: 2, explanation: '$|z|=\\sqrt{3^2+4^2}=5$ (distance from origin to (3,4)).', hint: 'Use Pythagoras on (3,4).', aiHelp: 'Magnitude of a complex number is distance in the plane.', points: 10 },
-      { question: 'Conjugate of $2 - 5i$ is:', options: ['2 + 5i','2 - 5i','-2 + 5i','-2 - 5i'], correctIndex: 0, explanation: 'Flip the sign of the imaginary part: $\\overline{2-5i}=2+5i$.', hint: 'Reflect across real axis.', aiHelp: 'Change the sign of the $i$ part.', points: 10 },
-      { question: 'If $z_1 = 1+2i$ and $z_2 = 3+i$, then $z_1+z_2$ equals:', options: ['4+3i','2+3i','4+i','None'], correctIndex: 0, explanation: 'Add components: $(1+3)+(2+1)i = 4+3i$.', hint: 'Add real with real, imag with imag.', aiHelp: 'Think of vector addition (1,2)+(3,1).', points: 10 },
-      { question: 'Roots of $x^2 - 5x + 6 = 0$ are:', options: ['2, 3','-2, -3','1, 6','None'], correctIndex: 0, explanation: 'Factor: $(x-2)(x-3)=0\\Rightarrow x=2,3$.', hint: 'Find two numbers adding to 5 and multiplying to 6.', aiHelp: 'Try factoring before using quadratic formula.', points: 10 },
-      { question: 'Discriminant of $2x^2 - 4x + 2 = 0$ is:', options: ['0','4','-4','None'], correctIndex: 0, explanation: '$D=b^2-4ac=(-4)^2-4(2)(2)=16-16=0$ (double root).', hint: 'Compute $b^2-4ac$.', aiHelp: 'Plug a=2,b=-4,c=2 carefully.', points: 10 },
-      { question: 'If a quadratic has equal roots, then $D$ equals:', options: ['0','>0','<0','None'], correctIndex: 0, explanation: 'Equal roots occur when discriminant $D=0$.', hint: 'Tangent parabola to x-axis.', aiHelp: 'In quadratic formula, the ± part becomes 0.', points: 10 },
-      { question: 'If roots are $\\alpha,\\beta$ of $ax^2+bx+c=0$, then sum and product are:', options: ['-b/a, c/a','b/a, c/a','b/a, -c/a','-b/a, -c/a'], correctIndex: 0, explanation: '$\\alpha+\\beta=-\\tfrac{b}{a},\\; \\alpha\\beta=\\tfrac{c}{a}$.', hint: "Vieta’s formulas.", aiHelp: 'Compare with $(x-\\alpha)(x-\\beta)=x^2-(\\alpha+\\beta)x+\\alpha\\beta$.', points: 10 },
-      { question: 'Equation with roots 2 and -3 is:', options: ['$x^2+x-6=0','$x^2-5x+6=0','$x^2+x+6=0','None'], correctIndex: 0, explanation: '(x-2)(x+3)=x^2+x-6=0.', hint: 'Form (x-r1)(x-r2)=0.', aiHelp: 'Multiply (x-2)(x+3).', points: 10 },
-      { question: 'Nature of roots of $x^2+4x+5=0$:', options: ['Real & distinct','Real & equal','Imaginary','None'], correctIndex: 2, explanation: '$D=4^2-4(1)(5)=16-20=-4<0$ ⇒ complex (non‑real) roots.', hint: 'Check discriminant sign.', aiHelp: 'Negative discriminant ⇒ no x‑axis cut.', points: 10 }
     ]
   },
             // Intermediate Level - Complex Numbers
